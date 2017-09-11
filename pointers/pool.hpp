@@ -7,10 +7,10 @@ class Pool
 {
 public:
 
-    Pool(std::shared_ptr<CacheImpl> i);
+    Pool(CacheImpl& i);
 
     Cache& getCache();
 
 private:
-    std::shared_ptr<CacheImpl> i;
+    CacheImpl& i;
 };

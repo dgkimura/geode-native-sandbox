@@ -12,9 +12,13 @@ public:
 
     int doSomething();
 
+    Pool& getPool();
+
 private:
 
     Cache& c;
+
+    Pool p;
 };
 
 
@@ -22,9 +26,7 @@ class Cache
 {
 private:
 
-    std::shared_ptr<CacheImpl> i;
-
-    Pool p;
+    std::unique_ptr<CacheImpl> i;
 
 public:
 

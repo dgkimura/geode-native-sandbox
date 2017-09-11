@@ -6,11 +6,17 @@
 class CacheImpl : public std::enable_shared_from_this<CacheImpl>
 {
 public:
+    CacheImpl();
+
     Cache getCache();
 
     int doSomething();
 
+    Pool& getPool();
+
 private:
+
+    Pool p;
 };
 
 
@@ -19,8 +25,6 @@ class Cache
 private:
 
     std::shared_ptr<CacheImpl> i;
-
-    Pool p;
 
 public:
 

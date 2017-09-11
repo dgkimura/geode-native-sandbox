@@ -1,13 +1,19 @@
 #include "cache.hpp"
 
 
-CacheImpl::CacheImpl(Cache& c) : c(c) {}
+CacheImpl::CacheImpl(Cache& c) : c(c), p(*this) {}
 
 
 Cache&
 CacheImpl::CacheImpl::getCache()
 {
     return c;
+}
+
+Pool&
+CacheImpl::getPool()
+{
+    return p;
 }
 
 
@@ -19,7 +25,7 @@ CacheImpl::CacheImpl::doSomething()
 
 
 Cache::Cache()
-    : i(std::make_shared<CacheImpl>(*this)), p(i)
+    : i(new CacheImpl(*this))
 {
 }
 
@@ -32,5 +38,5 @@ Cache::doSomething()
 Pool&
 Cache::getPool()
 {
-    return p;
+    return i->getPool();
 }

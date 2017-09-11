@@ -2,11 +2,11 @@
 #include "pool.hpp"
 
 
-Pool::Pool(std::shared_ptr<CacheImpl> i) : i(i) {}
+Pool::Pool(CacheImpl& i) : i(i) {}
 
 
 Cache
 Pool::getCache()
 {
-    return Cache(i);
+    return i.getCache();
 }

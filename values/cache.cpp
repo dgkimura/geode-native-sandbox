@@ -1,8 +1,12 @@
 #include "cache.hpp"
 
+CacheImpl::CacheImpl()
+    : p(*this)
+{
+}
 
 Cache
-CacheImpl::CacheImpl::getCache()
+CacheImpl::getCache()
 {
     // RVO prevents copy constructor call here...
 
@@ -13,14 +17,20 @@ CacheImpl::CacheImpl::getCache()
 
 
 int
-CacheImpl::CacheImpl::doSomething()
+CacheImpl::doSomething()
 {
     return 1;
 }
 
+Pool&
+CacheImpl::getPool()
+{
+    return p;
+}
+
 
 Cache::Cache(std::shared_ptr<CacheImpl> i)
-    : i(i), p(i)
+    : i(i)
 {
 }
 
@@ -33,5 +43,5 @@ Cache::doSomething()
 Pool&
 Cache::getPool()
 {
-    return p;
+    return i->getPool();
 }
